@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recruitments', function (Blueprint $table) {
+        Schema::create('inputs_froms', function (Blueprint $table) {
             $table->id();
-            $table->json('data_form');
+            $table->string('type');
+            $table->string('title');
+            $table->string('placeholder');
+            $table->foreignId('recruitment_id')->constrained('recruitments')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recruitments');
+        Schema::dropIfExists('inputs_froms');
     }
 };

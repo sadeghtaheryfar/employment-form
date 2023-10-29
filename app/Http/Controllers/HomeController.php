@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
+use App\Models\InputsFrom;
 use App\Models\Recruitments;
-use Illuminate\Routing\Controller;
-use App\Http\Requests\StoreRecruitmentsRequest;
-use App\Http\Requests\UpdateRecruitmentsRequest;
+use Illuminate\Http\Request;
 
-class RecruitmentsController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Recruitments = Recruitments::all();
-        return view('admin.recruitments.index', compact('Recruitments'));
+        $InputsFrom = InputsFrom::all();
+        return view('index', compact('InputsFrom'));
     }
 
     /**
@@ -29,15 +28,18 @@ class RecruitmentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRecruitmentsRequest $request)
+    public function store(Request $request)
     {
-        //
+        $inputs = json_encode($request->all());
+        $data['data_form'] = $inputs;
+        Recruitments::create($data);
+        return to_route('home')->with('swal-success', 'اعلامیه ایمیلی جدید با موفقیت اد شد .');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Recruitments $recruitments)
+    public function show(string $id)
     {
         //
     }
@@ -45,7 +47,7 @@ class RecruitmentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Recruitments $recruitments)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +55,7 @@ class RecruitmentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRecruitmentsRequest $request, Recruitments $recruitments)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,7 +63,7 @@ class RecruitmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recruitments $recruitments)
+    public function destroy(string $id)
     {
         //
     }

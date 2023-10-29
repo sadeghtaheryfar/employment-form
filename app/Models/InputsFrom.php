@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Recruitments extends Model
+class InputsFrom extends Model
 {
+    protected $table = 'inputs_froms';
     use HasFactory,SoftDeletes;
-
+    
     protected $guarded = ['id'];
 }
