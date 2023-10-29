@@ -24,7 +24,7 @@
                     <tr>
                         <th scope="col" class="px-6 py-3">#</th>
 
-                        <th scope="col" class="px-6 py-3">عنوان اولین فیلد</th>
+                        <th scope="col" class="px-6 py-3">عنوان</th>
 
                         <th scope="col" class="px-6 py-3">نوع ورودی</th>
 
@@ -36,7 +36,7 @@
                         <tr>
                             <th class="px-6 py-4">{{ $input->id }}</th>
 
-                            <td class="px-6 py-4">{{ json_decode($input['data_form'],true) }}</td>
+                            <td class="px-6 py-4">{{ $input->title }}</td>
 
                             <td class="px-6 py-4">{{ $input->type }}</td>
 
