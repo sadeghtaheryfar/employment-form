@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'vazir';
+    src: url('../font/Vazir.ttf');
+}
+
+*{
+    font-family: 'vazir' !important;
+}
+
+
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 50px !important;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 50px !important;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 50px !important;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    border-radius: 50px !important;
+}
+
+main{
+    overflow: hidden;
+    width: 100%;
+    margin-top: 4.5rem;
+    background-color: #e1e1e1;
+    display: flex;
+    padding: 1rem;
+}
+
+
+.box-mini-menu{
+    position: relative;
+}
+
+
+.show-mini-menu{
+    position: absolute;
+    right: 0;
+    top: 2rem;
+    width: 15rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.226);
+    padding: 0.5rem;
+    z-index: 100;
+}
+
+
+.show-mini-menu li{
+    display: flex;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #d1d1d1;
+    cursor: pointer;
+}
+
+
+.show-mini-menu li:nth-last-child(1){
+    border-bottom: none !important;
+}
+
+
+.close-mini-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 99;
+}
+
+
+.hide-pc{
+    display: none !important;
+}
+
+
+.btn-menu{
+    margin-left: 1rem;
+}
+
+
+header{
+    position: fixed !important;
+    border-bottom: 1px solid rgb(185, 185, 185);
+}
+
+
+.menu .close-menu{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 109;
+    background: rgba(0, 0, 0, 0.192);
+    backdrop-filter: saturate(130%) blur(3px);
+}
+
+
+.menu .show{
+    right: 0 !important;
+}
+
+
+.menu .show-menu{
+    min-width: 16rem;
+    max-width: 16rem;
+    padding-top: 5rem;
+    height: 100%;
+    background-color: #616161;
+    border-left: 1px solid rgb(185, 185, 185);
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    overflow: auto;
+    z-index: 110;
+    transition: 0.7s;
+}
+
+@media screen and (max-width:1024px){
+    .menu .show-menu{
+        min-width: 16rem;
+        max-width: 16rem;
+        height: 100%;
+        background-color: #616161;
+        position: fixed;
+        top: 0;
+        right: -16rem;
+        display: flex;
+        flex-direction: column;
+        align-items: top;
+        overflow: auto;
+        z-index: 110;
+        transition: 0.7s;
+    }
+
+    .hide-pc{
+        display: flex !important;
+    }
+
+    .hidden-mobile{
+        display: none !important;
+    }
+}
