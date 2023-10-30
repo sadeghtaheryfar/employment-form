@@ -37,9 +37,12 @@ class RecruitmentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Recruitments $recruitments)
+    public function show(Recruitments $recruitment)
     {
-        //
+        $recruitments = json_decode($recruitment->data_form, true);
+        unset($recruitments["_token"]);
+        $keys = array_keys($recruitments);
+        return view('admin.recruitments.show', compact('recruitment', 'keys', 'recruitments'));
     }
 
     /**
@@ -61,8 +64,9 @@ class RecruitmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recruitments $recruitments)
+    public function destroy(Recruitments $recruitment)
     {
-        //
+        $recruitment->delete();
+        return back()->with('swal-success', 'درخواست با موفقیت حذف شد');
     }
 }

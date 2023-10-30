@@ -70,6 +70,6 @@ class InputsFromController extends Controller
     public function destroy(InputsFrom $input_form)
     {
         $input_form->delete();
-        return back()->with('swal-success', 'اعلامیه ایمیلی با موفقیت حذف شد');
+        return back()->with('swal-success', 'اینپوت فرم با موفقیت حذف شد');
     }
 }
