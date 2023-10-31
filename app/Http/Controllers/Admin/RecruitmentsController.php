@@ -14,7 +14,7 @@ class RecruitmentsController extends Controller
      */
     public function index()
     {
-        $Recruitments = Recruitments::all();
+        $Recruitments = Recruitments::all()->reverse();
         return view('admin.recruitments.index', compact('Recruitments'));
     }
 

@@ -10,7 +10,7 @@
         </button>
 
         <button class="flex text-[1rem] justify-center items-center text-[#ffffff]">
-            <span class="title-site">سلام صادق طاهری فر</span>
+            <span class="title-site">سلام ، خوش آمدید</span>
         </button>
     </div>
 

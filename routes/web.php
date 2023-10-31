@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\HomeAdminController;
 use App\Http\Controllers\Admin\InputsFromController;
 use App\Http\Controllers\Admin\RecruitmentsController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\Customer\LoginRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,20 +23,23 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class,"index"])->name('home');
 Route::post('/send-recruitments', [HomeController::class,"store"])->name('send-recruitments');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+
+Route::prefix('admin')->name('admin.')->middleware('auth','VerifyAdmin')->group(function () {
     Route::get('/', HomeAdminController::class)->name('home');
     Route::resource('/recruitments', RecruitmentsController::class);
     Route::resource('/input-forms', InputsFromController::class);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::namespace('Auth.')->group(function () {
+    Route::get('auth', [LoginRegisterController::class, 'loginRegisterForm'])->name('auth.customer.login-register-form');
+    Route::post('auth', [LoginRegisterController::class, 'loginRegisterStore'])->name('auth.customer.login-register-store');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::post('LougOut', [LoginRegisterController::class, 'destroy'])->name('auth.customer.destroy');
+
+    Route::get('auth-otp/{otp}', [LoginRegisterController::class, 'loginConfirmForm'])->name('auth.customer.login-confirm-form');
+    Route::post('auth-otp/{otp}', [LoginRegisterController::class, 'loginConfirmStore'])->name('auth.customer.login-confirm-store');
+    Route::get('auth-otp-resend/{otp}', [LoginRegisterController::class, 'loginResendStore'])->name('auth.customer.login-resend-store');
 });
 
 require __DIR__.'/auth.php';

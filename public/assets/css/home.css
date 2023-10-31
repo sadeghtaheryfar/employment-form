@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'kalameh2';
+    src: url("http://localhost:8000/assets/fonts/Kalameh-Bold.ttf");
+}
+
+
+*{
+    font-family: 'kalameh2' !important;
+}
+
+
+.form-style > div{
+    margin: 1rem 0rem;
+}
+
+
+.form-style input{
+    margin-top: 0.5rem;
+    border: 1px solid #0000ff;
+    border-radius: 15px 0px 15px 0px;
+    padding: 10px;
+    resize: vertical;
+    font-family: 'kalameh2';
+    font-size: 18px;
+}
+
+
+.form-style textarea{
+    margin-top: 0.5rem;
+    border: 1px solid #0000ff;
+    border-radius: 15px 0px 15px 0px;
+    padding: 10px;
+    resize: vertical;
+    font-family: 'kalameh2';
+    font-size: 18px;
+}

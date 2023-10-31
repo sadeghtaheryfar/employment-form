@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('type');
             $table->string('title');
             $table->string('placeholder');
-            $table->foreignId('recruitment_id')->constrained('recruitments')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->string('name');
+            $table->foreignId('recruitment_id')->nullable()->default(null)->constrained('recruitments')->onUpdate('cascade')->onDelete('cascade');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

@@ -33,7 +33,7 @@ class HomeController extends Controller
         $inputs = json_encode($request->all());
         $data['data_form'] = $inputs;
         Recruitments::create($data);
-        return to_route('home')->with('swal-success', 'اعلامیه ایمیلی جدید با موفقیت اد شد .');
+        return to_route('home')->with('swal-success', "درخواست استخدام با موفقیت ارسال شد ما با شما ارتباط بر قرار میکنیم .");
     }
 
     /**

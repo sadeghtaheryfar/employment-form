@@ -3,17 +3,11 @@
 
 <head>
     <title>@yield('title')</title>
-    <link href="{{ asset('/dist/css/sweetalert.css') }}" rel="stylesheet">
-    <!-- Sweet Alert -->
-    <script src="{{ asset('/dist/js/sweetalert.min.js') }}"></script>
-    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
     @include('admin.layouts.hed-tag')
 </head>
 
 <body dir="rtl">
     @include('admin.layouts.parshials.header')
-
-    @include('sweetalert::alert')
 
     @include('admin.layouts.parshials.sidbar')
 
@@ -40,30 +34,7 @@
     </main>
 </body>
 @include('admin.layouts.scripts')
-<script>
-    $(document).on('click', '.button', function(e) {
-        e.preventDefault();
-        var id = $(this).data('id');
-        swal({
-                title: "Are you sure!",
-                type: "error",
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "Yes!",
-                showCancelButton: true,
-            },
-            function() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('/destroy') }}",
-                    data: {
-                        id: id
-                    },
-                    success: function(data) {
-                        //
-                    }
-                });
-            });
-    });
-</script>
+@include('alerts.success')
+@include('alerts.error')
 
 </html>
