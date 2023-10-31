@@ -63,7 +63,7 @@ class LoginRegisterController extends Controller
             ];
         }
 
-        $otpCode = rand(111111, 999999);
+        $otpCode = 111111;
         $token = Str::random(60);
         $otpInputs = [
             'token' => $token,
@@ -157,7 +157,7 @@ class LoginRegisterController extends Controller
             return redirect()->route("auth.customer.login-register-form")->withErrors(['id' => $error]);
         } else {
             $user = $otp->user->first();
-            $otpCode = rand(111111, 999999);
+            $otpCode = 111111;
             $token = Str::random(60);
             $otpInputs = [
                 'token' => $token,

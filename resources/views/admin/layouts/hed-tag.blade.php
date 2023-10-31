@@ -6,5 +6,16 @@
     <link rel="stylesheet" href="{{ asset('admin-pannle/css/style.css') }}" media="all" type="text/css">
     <link rel="shortcut icon" href="https://www.farsgamer.com/admin/media/logos/favicon.ico">
     <link rel="icon" href="https://www.farsgamer.com/site/images/logo-icon.png">
-    <link rel="stylesheet" href="{{ asset("assets/sweetalert2/sweetalert2.css") }}">
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.css') }}">
+    <style>
+        @font-face {
+            font-family: 'kalameh2';
+            src: url("https://holdingconnect.farsgamerpay.com/assets/fonts/Kalameh-Bold.ttf");
+        }
+
+
+        * {
+            font-family: 'kalameh2' !important;
+        }
+    </style>
 @show

@@ -25,6 +25,9 @@ class UpdateInputsFromRequest extends FormRequest
             'type' => 'required|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
             'title' => 'required|max:120|min:3|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
             'placeholder' => 'required|max:120|min:3|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'select_values' => 'max:120|min:3|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'recruitment_id' => 'max:120|min:3|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'status' => 'max:120|min:3|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
         ];
     }
 }

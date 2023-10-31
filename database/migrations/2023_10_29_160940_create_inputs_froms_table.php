@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('placeholder');
             $table->string('name');
+            $table->json('select_values')->nullable()->default(null);
             $table->foreignId('recruitment_id')->nullable()->default(null)->constrained('recruitments')->onUpdate('cascade')->onDelete('cascade');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

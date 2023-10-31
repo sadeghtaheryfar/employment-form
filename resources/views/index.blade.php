@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="https://www.farsgamer.com/admin/media/logos/favicon.ico">
     <link rel="icon" href="https://www.farsgamer.com/site/images/logo-icon.png">
-    <link rel="stylesheet" href="{{ asset("assets/sweetalert2/sweetalert2.css") }}">
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.css') }}">
     <title>استخدام در فارس گیمر</title>
 </head>
 
@@ -48,6 +48,21 @@
 
                         <textarea id="title3" name="{{ $item->name }}" type="number" placeholder="{{ $item->placeholder }}"
                             class="bg-gray-50  block w-full h-[10rem]">{{ old('title') }}</textarea>
+                    </div>
+                @endif
+
+                @if ($item->type == 'select')
+                    <div>
+                        <label for="{{ $item->name }}">{{ $item->title }} *</label>
+
+                        <select id="{{ $item->name }}"
+                            name="{{ $item->name }}"class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required autofocus>
+                            @foreach (json_decode($item->select_values) as $item)
+                                <option value="{{ $item }}" @if (old('{{ $item }}') == '{{ $item }}') selected @endif>
+                                    {{ $item }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 @endif
             @endforeach

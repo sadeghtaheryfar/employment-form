@@ -34,3 +34,14 @@
     font-family: 'kalameh2';
     font-size: 18px;
 }
+
+
+.form-style select{
+    margin-top: 0.5rem;
+    border: 1px solid #0000ff !important;
+    border-radius: 15px 0px 15px 0px;
+    padding: 10px;
+    resize: vertical;
+    font-family: 'kalameh2';
+    font-size: 18px;
+}

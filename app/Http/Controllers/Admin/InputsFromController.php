@@ -33,6 +33,10 @@ class InputsFromController extends Controller
     public function store(StoreInputsFromRequest $request)
     {
         $inputs = $request->all();
+        if($request->select_values)
+        {
+            $inputs['select_values'] = json_encode(explode(',', $inputs['select_values']));
+        }
         InputsFrom::create($inputs);
         return to_route('admin.input-forms.index')->with('swal-success', 'اعلامیه ایمیلی جدید با موفقیت اد شد .');
     }
@@ -51,6 +55,9 @@ class InputsFromController extends Controller
     public function edit(InputsFrom $input_form)
     {
         $inputsFrom = $input_form;
+        if($input_form->select_values !== null) {
+            $inputsFrom['select_values'] = implode(",",json_decode($inputsFrom->select_values));
+        }
         return view('admin.InputFrom.edit',compact('inputsFrom'));
     }
 
@@ -60,6 +67,10 @@ class InputsFromController extends Controller
     public function update(UpdateInputsFromRequest $request, InputsFrom $input_form)
     {
         $inputs = $request->all();
+        if($request->select_values)
+        {
+            $inputs['select_values'] = json_encode(explode(',', $inputs['select_values']));
+        }
         $input_form->update($inputs);
         return to_route('admin.input-forms.index')->with('swal-success', 'اطلاعیه ایمیلی با موفقیت ویرایش شد');
     }
