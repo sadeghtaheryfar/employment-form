@@ -9,13 +9,14 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use App\Notifications\NewRegisterUser;
 use Illuminate\Support\Facades\Config;
 use App\Http\Services\Message\MessageService;
 use App\Http\Services\Message\SMS\SmsService;
 use App\Http\Requests\StoreLoginRegisterRequest;
 use App\Http\Services\Message\Email\EmailService;
-use App\Notifications\NewRegisterUser;
-use Illuminate\Http\RedirectResponse;
 
 class LoginRegisterController extends Controller
 {
@@ -55,7 +56,7 @@ class LoginRegisterController extends Controller
         }
 
         if (empty($user)) {
-            $newUser['password'] = '951753258';
+            $newUser['password'] = '123456';
             $newUser['activation'] = 1;
             $user = User::create($newUser);
             $details = [
@@ -63,7 +64,7 @@ class LoginRegisterController extends Controller
             ];
         }
 
-        $otpCode = 111111;
+        $otpCode = rand(111111, 999999);
         $token = Str::random(60);
         $otpInputs = [
             'token' => $token,
@@ -126,9 +127,17 @@ class LoginRegisterController extends Controller
             return redirect()->route("auth.customer.login-register-form")->withErrors(['id' => $error]);
         }
 
+        
+        $user = $otp->user()->first();
+
         if ($otp->otp_code !== $inputs['otp']) {
-            $error = "کد تایید وارد شده معتبر نیست .";
-            return redirect()->route("auth.customer.login-confirm-form", $token)->withErrors(['id' => $error]);
+            if(Hash::check($inputs['otp'], $user->password))
+            {
+                Auth::login($user);
+            }else{
+                $error = "کد تایید وارد شده معتبر نیست .";
+                return redirect()->route("auth.customer.login-confirm-form", $token)->withErrors(['id' => $error]);
+            }
         }
 
         $otp->update(['used' => 1]);
@@ -157,7 +166,7 @@ class LoginRegisterController extends Controller
             return redirect()->route("auth.customer.login-register-form")->withErrors(['id' => $error]);
         } else {
             $user = $otp->user->first();
-            $otpCode = 111111;
+            $otpCode = rand(111111, 999999);
             $token = Str::random(60);
             $otpInputs = [
                 'token' => $token,

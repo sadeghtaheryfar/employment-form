@@ -1,10 +1,11 @@
 @font-face {
-    font-family: 'vazir';
-    src: url('../font/Vazir.ttf');
+    font-family: 'kalameh2';
+    src: url("http://localhost:8000/assets/fonts/Kalameh-Bold.ttf");
 }
 
+
 *{
-    font-family: 'vazir' !important;
+    font-family: 'kalameh2' !important;
 }
 
 

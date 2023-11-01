@@ -22,7 +22,7 @@ class FarazSmsService
         $username = $this->username;
         $password = $this->password;
         $from = $from;
-        $pattern_code = "txmjc2sgd2mtxvu";
+        $pattern_code = "9rfeq9e87v";
         $to = $to;
         $input_data = array("code" => $text);
         $url = "https://ippanel.com/patterns/pattern?username=" . $username . "&password=" . urlencode($password) . "&from=$from&to=" . json_encode($to) . "&input_data=" . urlencode(json_encode($input_data)) . "&pattern_code=$pattern_code";
@@ -31,6 +31,8 @@ class FarazSmsService
         curl_setopt($handler, CURLOPT_POSTFIELDS, $input_data);
         curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($handler);
+
+        dd($response);
     }
 
     public function SendSms($from, array $to, $text, $isFlash = true)

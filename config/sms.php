@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'username' => '09231099586',
-    'password' => 'Faraz@0680888624',
+    'username' => '09931788937',
+    'password' => 'a1rp1l5o#{rB',
     'otp_from' => '3000505',
 ];
